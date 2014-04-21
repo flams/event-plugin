@@ -19,6 +19,8 @@ Require event-plugin:
 var EventPlugin = require("event-plugin");
 ```
 
+doc is coming...
+
 LICENSE
 =======
 
