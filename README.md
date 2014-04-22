@@ -19,7 +19,38 @@ Require event-plugin:
 var EventPlugin = require("event-plugin");
 ```
 
-doc is coming...
+Init event plugin and define event handlers:
+
+```js
+var eventPlugin = new EventPlugin({
+    toggle: function (event, node) {
+        // do something with...
+        // event is the original event
+        // node is the dom node that was clicked
+    }
+});
+```
+
+```html
+<!-- The toggle function will be called on click, on the propagation phase -->
+<button data-event="listen: click, toggle, true">Change route</button>
+```
+
+When ready, attach the behavior to the dom via Seam:
+
+```js
+var Seam = require("seam");
+
+var seam = new Seam();
+
+seam.addAll({
+    event: eventPlugin
+});
+
+seam.apply(document.querySelector("button"));
+```
+
+
 
 LICENSE
 =======
