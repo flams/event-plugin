@@ -41,15 +41,26 @@ When ready, attach the behavior to the dom via Seam:
 ```js
 var Seam = require("seam");
 
-var seam = new Seam();
-
-seam.addAll({
+var seam = new Seam({
     event: eventPlugin
 });
 
 seam.apply(document.querySelector("button"));
 ```
 
+You can also use the delegation method from event to delegate events to a parent DOM element.
+This improves performance are less event listeners are bound to the DOM. This is especially
+relevant to lists.
+
+```html
+<!-- The ul will listen to click event and call the toggle handler if an element matching 'a' is targeted.
+     The bubbling phase will be listened to in this case -->
+<ul data-event="delegate: a, click, toggle, false">
+    <li><a href="#link1">link1</a></li>
+    <li><a href="#link2">link2</a></li>
+    <li><a href="#link3">link3</a></li>
+</ul>
+```
 
 
 LICENSE
